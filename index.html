@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab Digital Library</title>
+    <style>
+        img {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const book = urlParams.get('bookId');
+        const pages = (urlParams.get('pages') ?? 1) * 1;
+        const ms = (urlParams.get('ms') ?? 10000) * 1;
+
+        let currentPage = 1;
+
+        const interval = setInterval(function (){
+            if(currentPage > pages){
+                clearInterval(interval);
+                return;
+            }
+            document.write(`<img src="http://savepanjab.org/images?ID=${book}&page=${currentPage}&pagetype=null">`)
+            currentPage = currentPage + 1;
+        }, ms)
+    </script>
+</body>
+
+</html>
